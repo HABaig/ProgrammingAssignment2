@@ -5,23 +5,26 @@
 #The first part of the create a function to create matrix, 
 #retrive the matrix, create inverse of matrix and get the inverse.
 
-makeCacheMatrix <- function(x = matrix()){
-  inv = NULL
-
-    setmatrix <- function(y){
+makeCacheMatrix <- 
+  function(x = matrix()){ ##define function with a default matrix
+    inv = NULL                   ##create an empty placeholder of matrix inverse
+    
+    setmatrix <- function(y){    ##define a new function for matrix in parent environment
     x <<- y
-    inv <<- NULL
-  }
-  getmatrix <- function()(x)
+    inv <<- NULL                
+    }
+  getmatrix <- function()(x)     ##get the value of matrix
   
-  setInverse <- function(inverse)(inv <<- inverse)
-  getInverse <- function()(inv)
+  setInverse <- function(inverse)(inv <<- inverse)   #function to define inverse matrix in parent environment
+  getInverse <- function()(inv)  ##get the value of inverse of matrix
   
-  list(setmatrix=setmatrix, getmatrix=getmatrix, setInverse=setInverse, getInverse=getInverse)
+#create a list of function to retrive later using $ operator
+    list(setmatrix=setmatrix, getmatrix=getmatrix, setInverse=setInverse, getInverse=getInverse)
 }
 
-
-## This part of code solves the matrix if a matrix is given as input
+# This part of code returns the matrix created by the first function by 
+# retreiving it from cache given that inverse has already been calculated
+# and the matrix has not changed.
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
@@ -36,8 +39,3 @@ cacheSolve <- function(x, ...) {
   x$setInverse(inv)
   inv
 }
-
-##Example : Create a 4x4 matrix using
-##          mat <- makeCacheMatrix(matrix(1:4, nrow=2, ncol=2))
-##command the function to create and cache the inverse of matrix using
-#           cachesolve(mat)
