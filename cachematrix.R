@@ -21,11 +21,13 @@ makeCacheMatrix <- function(x = matrix()){
 }
 
 
-## This part of code solves the matrizx if a matrix is given as input
+## This part of code solves the matrix if a matrix is given as input
+
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
   inv <- x$getinverse()
-  if(!is.null(inv)){
+        ##If the cached matrix is called again, it will appear along with message
+    if(!is.null(inv)){
     message("acquiring cached data")
     return(inv)
   }
